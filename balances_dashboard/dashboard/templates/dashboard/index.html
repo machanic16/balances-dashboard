@@ -1,0 +1,14 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<h1>This is the Landing page for the dasboard</h1>
+{% if stores %}
+    <ul>
+        {% for store in stores %}
+            <li>{{store.company.name}}--{{store.name}}</li>
+        {% endfor %}
+    </ul>
+    
+
+{% endif %}
