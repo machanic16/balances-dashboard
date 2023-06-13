@@ -16,17 +16,32 @@
       <div class="jumbotron bg-primary rounded-pill text-white text-center">
         <h1 class="display-4">Rack Status Dashboard</h1>
           {%if store%}
-              <p class="lead"> <strong>{{ store.company.name }}</strong> - {{ store.name }} dashboard displaying the status of stores.</p>
+              <p class="lead"> <strong>{{ store }}</strong> dashboard displaying the status of stores.</p>
           {%else%}
               <p class="lead"> No store selected</p>
           {%endif%}
       </div>
-      <ul>
-      {% for rack in store.rack_set.all%}
-        <li>{{rack.name}}</li>
+      <div class="container col-md-10 offset-md-1 ">
+        <div class="row row-cols-3">
+          {% for rack in store.rack_set.all %}
+            <div class="col ">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ rack.name }}</h5>
+                  <h6  {% if rack.status != 'full' %}class="card-subtitle mb-2 text-white bg-danger"{% else %}class="card-subtitle mb-2 text-white bg-success"{% endif %}>{{rack.get_status_display}}</h6>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 
-      {%endfor%}
-      </ul>
+  <div class="container mt-3">
+    <button class="btn btn-primary" ><a class="text-decoration-none text-dark jumbotron text-white" href="{%url 'dashboard:index'%}">Go Back</a></button>
   </div>
 
 </body>

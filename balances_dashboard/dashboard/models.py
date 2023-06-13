@@ -17,7 +17,7 @@ class Store(models.Model):
     company =  models.ForeignKey(Company, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return self.company.name + '--' + self.name + '\n'
+        return self.company.name + '-' + self.name + '\n'
 
 
     
