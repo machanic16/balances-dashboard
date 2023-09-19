@@ -1,0 +1,58 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store Status</title>
+</head>
+
+<body>
+    <div class="container">
+      <div class="jumbotron bg-info rounded-pill text-white text-center">
+        <h1 class="display-4">Rack Status Dashboard</h1>
+          {%if store%}
+              <p class="lead"> <strong>{{ store }}</strong> dashboard displaying the status of stores.</p>
+          {%else%}
+              <p class="lead"> No store selected</p>
+          {%endif%}
+      </div>
+      <div class="container col-md-10 offset-md-1 ">
+        <div class="row row-cols-3">
+          {% for rack in store.rack_set.all %}
+            <div class="col ">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{ rack.name }}</h5>
+                  <h6  {% if rack.status == 'full' %}
+                          class="card-subtitle mb-2 text-white bg-success"
+                        {% elif rack.status == 'empty' %}
+                        class="card-subtitle mb-2 text-white bg-danger"
+                         {% elif rack.status == 'needs_refil' %}
+                        class="card-subtitle mb-2 text-white bg-warning"
+                       {% elif rack.status == 'good'%}
+                        class="card-subtitle mb-2 text-white bg-primary"
+                        {% endif %}>
+                        {{rack.get_status_display}}</h6>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  <div class="container mt-3">
+    <button class="btn btn-info" ><a class="text-decoration-none text-dark jumbotron text-white" href="{%url 'dashboard:index'%}">Go Back</a></button>
+  </div>
+
+</body>
+
+</html>
