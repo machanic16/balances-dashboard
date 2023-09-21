@@ -39,6 +39,9 @@ DJANGO = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
+DJANGO_REST = (
+    'rest_framework',
+)
 
 THIR_APPS = ('bootstrap5',)
 
@@ -46,7 +49,7 @@ LOCAL_APPS = (
     'dashboard.apps.DashboardConfig',
 )
 
-INSTALLED_APPS = DJANGO + THIR_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO + DJANGO_REST + THIR_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
