@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 import dj_database_url
 import os
 
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-0nk)$&or_z+7(r49d3j^rx^)r##9vpw4j#atbr2$hg=f$x#x7g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'weight-balance.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -137,11 +138,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Additional directories to search for static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Add your additional directories here
-]
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)  # Add your additional directories here
+django_heroku.settings(locals())
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
