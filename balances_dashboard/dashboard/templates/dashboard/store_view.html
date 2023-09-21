@@ -9,6 +9,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Store Status</title>
+  <style>
+    /* Add custom CSS styles here if needed */
+    @media (max-width: 576px) {
+      /* For screens smaller than 576px (mobile devices) */
+      .col {
+        display: block;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -22,9 +31,9 @@
           {%endif%}
       </div>
       <div class="container col-md-10 offset-md-1 ">
-        <div class="row row-cols-3">
+        <div class="row row-cols-auto">
           {% for rack in store.rack_set.all %}
-            <div class="col ">
+            <div class="col p-2">
               <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">{{ rack.name }}</h5>
