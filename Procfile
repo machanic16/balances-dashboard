@@ -1,4 +1,4 @@
-web: gunicorn balances_dashboard.wsgi 
-web: gunicorn balances_dashboard.wsgi --log-file - 
+web: gunicorn balances_dashboard
+web: gunicorn balances_dashboard --log-file - 
 
 
