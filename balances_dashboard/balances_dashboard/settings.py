@@ -98,10 +98,20 @@ WSGI_APPLICATION = 'balances_dashboard.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "delvunndfc6vps",
+        "USER": "glmlgngrmwatbe",
+        "PASSWORD": "e8b0952a23c1898a4c11de23172af71d877468c89ea5c0b62c905ea808cc3805",
+        "HOST": "ec2-3-210-173-88.compute-1.amazonaws.com",
+        "PORT": "5432",
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+# }
 # db_from_env = dj_database_url.config(conn_max_age=600)
 # DATABASES['default'].update(db_from_env)
 
