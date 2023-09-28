@@ -11,9 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import django_heroku
-import dj_database_url
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0nk)$&or_z+7(r49d3j^rx^)r##9vpw4j#atbr2$hg=f$x#x7g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,22 +39,17 @@ DJANGO = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
-DJANGO_REST = (
-    'rest_framework',
-)
 
-THIR_APPS = ('bootstrap5',
-             'whitenoise.runserver_nostatic',)
+THIR_APPS = ('bootstrap5',)
 
 LOCAL_APPS = (
     'dashboard.apps.DashboardConfig',
 )
 
-INSTALLED_APPS = DJANGO + DJANGO_REST + THIR_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO + THIR_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,9 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# ROOT_URLCONF = 'balances_dashboard.urls'
+ROOT_URLCONF = 'balances_dashboard.urls'
 
 TEMPLATES = [
     {
@@ -98,25 +88,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "delvunndfc6vps",
-#         "USER": "glmlgngrmwatbe",
-#         "PASSWORD": "e8b0952a23c1898a4c11de23172af71d877468c89ea5c0b62c905ea808cc3805",
-#         "HOST": "ec2-3-210-173-88.compute-1.amazonaws.com",
-#         "PORT": "5432",
-#     }
-#}
-
-# DATABASES = {
-#     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-# }
-
-
-# db_from_env = dj_database_url.config(conn_max_age=600)
-# DATABASES['default'].update(db_from_env)
-
 
 
 # Password validation
@@ -154,19 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# Additional directories to search for static files
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)  # Add your additional directories here
-django_heroku.settings(locals())
-
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-import django_heroku
-django_heroku.settings(locals())
