@@ -108,12 +108,10 @@ WSGI_APPLICATION = 'balances_dashboard.wsgi.application'
 #         "PORT": "5432",
 #     }
 #}
+
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://jyaiculvfsrnts:5bbd6077cba3c1d6de1cec35efa417a58cc34b5f9a59de7ae6d5300b0e7323f5@ec2-44-218-92-155.compute-1.amazonaws.com:5432/d6r5es72f5kio4')
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
-# DATABASES = {
-#     'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-# }
 
 
 # db_from_env = dj_database_url.config(conn_max_age=600)
