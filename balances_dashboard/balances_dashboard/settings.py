@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0nk)$&or_z+7(r49d3j^rx^)r##9vpw4j#atbr2$hg=f$x#x7g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -99,8 +99,8 @@ DATABASES = {
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -140,8 +140,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Additional directories to search for static files
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)  # Add your additional directories here
-django_heroku.settings(locals())
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)  # Add your additional directories here
+# django_heroku.settings(locals())
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
