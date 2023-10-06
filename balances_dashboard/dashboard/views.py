@@ -34,6 +34,30 @@ def store_list(request,format=None):
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['GET','POST'])
+def racks_list(request,format=None):
+    if request.method == 'GET':
+        racks = Rack.objects.all()
+        serializer = RackSerializer(racks,many=True)
+        return JsonResponse({'data':serializer.data})
+     
+    if request.method == 'POST':
+        serializer = RackSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(request, status=status.HTTP_201_CREATED)
+        
+@api_view(['POST'])
+def update_rack_status(request,format=None):
+    if request.method == 'POST':
+        pk = request.data['pk']
+        rack = Rack.objects.get(pk=pk)
+        serializer = RackSerializer(rack,data=request.data['vals'],partial=True) 
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 
 
