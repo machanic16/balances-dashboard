@@ -44,7 +44,7 @@ class Rack(models.Model):
         ('full','Full'),
         ('empty','Empty'),
         ('good','Good'),
-        ('needs_refil','Needs Refil')
+        ('needs_refill','Needs Refill')
     )
     status = models.CharField(max_length=30,choices=status_choices,default='empty')
 
