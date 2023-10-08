@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='rack',
             name='status',
-            field=models.CharField(choices=[('full', 'Full'), ('empty', 'Empty'), ('good', 'Good'), ('needs_refil', 'Needs Refil')], default='empty', max_length=30),
+            field=models.CharField(choices=[('full', 'Full'), ('empty', 'Empty'), ('good', 'Good'), ('needs_refill', 'Needs Refill')], default='empty', max_length=30),
         ),
         migrations.AlterField(
             model_name='company',

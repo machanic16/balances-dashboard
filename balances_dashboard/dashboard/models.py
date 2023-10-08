@@ -28,7 +28,7 @@ class Store(models.Model):
         statuses = [rack.status for rack in self.rack_set.all()]
         if 'empty' in statuses:
             return 0
-        elif 'needs_refil' in statuses :
+        elif 'needs_refill' in statuses :
             return 1
         elif len(set(statuses)) > 1 :
             return 2
