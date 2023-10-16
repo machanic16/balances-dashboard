@@ -11,11 +11,10 @@
   <title>Stores Status Dashboard</title>
 </head>
 
-<body>
+<body class="bg-dark bg-gradient">
   <div class="container">
-    <div class="jumbotron bg-info rounded-pill text-white text-center">
+    <div class="bg-light col-lg-6 offset-lg-3 col-10 offset-1 rounded-pill text-black text-center">
       <h1 class="display-4">Stores Status Dashboard</h1>
-      <p class="lead">Welcome to the dashboard displaying the status of stores.</p>
     </div>
 
     {% if stores %}
@@ -23,17 +22,31 @@
       <div class="offset-md-3 col-md-6">
         <ul class="list-group text-center">
           {% for store in stores %}
-            <li class="list-group-item">
-              <a href="{% url 'dashboard:store' store.id%}" class="text-decoration-none text-dark">
-                <strong>{{ store }}</strong>  
+            <li class="list-group-item 
+                        mt-3 rounded-pill 
+                        bg-light 
+                        col-lg-6 
+                        offset-lg-3 
+                        col-10 
+                        offset-1
+                        shadow-lg">
+              <a href="{% url 'dashboard:store' store.id%}" class="text-decoration-none 
+                                                                   text-dark
+                                                                   d-flex
+                                                                   justify-content-evenly
+                                                                   col-12">
+                <div class="col-lg-5   ">
+                  <strong class="d-block">{{ store }}</strong>  
+                  <span class="d-block">{{store.city}}</span>
+                </div>
                 {% if store.statuses == 0 %}
-                <div class="btn btn-danger text-white"> Priority   </div>
+                <div class="btn btn-danger text-white col-lg-5 "> Priority   </div>
                 {% elif store.statuses == 1 %}
-                <div class="btn btn-warning text-white"> Need visit   </div>
+                <div class="btn btn-warning text-white col-lg-5 "> Need visit   </div>
                 {% elif store.statuses == 2 %}
-                <div class="btn btn-primary text-white"> Good    </div>
+                <div class="btn btn-primary text-white col-lg-5 "> Good    </div>
                 {% elif store.statuses == 3 %}
-                <div class="btn btn-success text-white"> Excelent   </div>
+                <div class="btn btn-success text-white col-lg-5 "> Excelent   </div>
                 {% endif %} 
                 
               </a>
