@@ -20,34 +20,42 @@
   </style>
 </head>
 
-<body>
+<body class="bg-dark bg-gradient">
     <div class="container">
-      <div class="jumbotron bg-info rounded-pill text-white text-center">
-        <h1 class="display-4">Rack Status Dashboard</h1>
+      <div class="bg-light  
+                  mt-3 
+                  rounded-pill 
+                  text-black 
+                  text-center
+                  col-lg-2 offset-lg-5 col-6 offset-3">
           {%if store%}
-              <p class="lead"> <strong>{{ store }}</strong> dashboard displaying the status of stores.</p>
+              <p class="lead"> <strong>{{ store }}</strong> </p>
           {%else%}
               <p class="lead"> No store selected</p>
           {%endif%}
       </div>
-      <div class="container col-md-10 offset-md-1 ">
-        <div class="row row-cols-auto">
+      <div class="container d-flex col-md-10 offset-md-1" >
+        <div class="row" >
           {% for rack in store.rack_set.all %}
-            <div class="col p-2">
-              <div class="card" style="width: 18rem;">
+            <div class="col-md-4 offset-md-0 col-sm-6 offset-sm-0  col-10 offset-1 mt-3" >
+              <div class="card col-10 offset-1" >
                 <div class="card-body">
-                  <h5 class="card-title">{{ rack.name }}</h5>
-                  <h6  {% if rack.status == 'full' %}
-                          class="card-subtitle mb-2 text-white bg-success"
-                        {% elif rack.status == 'empty' %}
-                        class="card-subtitle mb-2 text-white bg-danger"
-                         {% elif rack.status == 'needs_refill' %}
-                        class="card-subtitle mb-2 text-white bg-warning"
-                       {% elif rack.status == 'good'%}
-                        class="card-subtitle mb-2 text-white bg-primary"
-                        {% endif %}>
-                        {{rack.get_status_display}}</h6>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <div class="d-flex justify-content-evenly">
+                      <h5 class="card-title">{{ rack.name }}</h5>
+                      <span  {% if rack.status == 'full' %}
+                              class="card-subtitle mb-2 rounded-pill text-white bg-success"
+                            {% elif rack.status == 'empty' %}
+                            class="card-subtitle mb-2 rounded-pill text-white bg-danger"
+                            {% elif rack.status == 'needs_refill' %}
+                            class="card-subtitle mb-2 rounded-pill text-white bg-warning"
+                          {% elif rack.status == 'good'%}
+                            class="card-subtitle mb-2 rounded-pill text-white bg-primary"
+                            {% endif %}>
+                            &#160;{{rack.get_status_display}} &#160;</span>
+
+                  </div>
+                  <h5 class="card-text">Visited by:</h5>
+                  <h5 class="card-text">Last visit:</h5>
                   <a href="#" class="card-link">Card link</a>
                   <a href="#" class="card-link">Another link</a>
                 </div>
